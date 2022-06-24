@@ -45,7 +45,7 @@ if( isset($_POST['subscribeButton']) )
                 <div class="navbar-nav">
                     <a href="index.php" class="nav-link active">Home</a>
                     <a href="about-us.php" class="nav-link">About Us</a>
-                    <a href="#" class="nav-link">Contact Us</a>
+                    <a href="enroll.php" class="nav-link btn btn-primary text-white">Register Now</a>
                 </div>
             </div>
         </div>

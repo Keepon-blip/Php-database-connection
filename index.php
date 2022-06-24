@@ -1,35 +1,4 @@
-<?php
-$server="localhost";
-$username="root";
-$password="";
-$database="zalego";
-
-$conn = mysqli_connect($server, $username, $password, $database);
-
-if ( isset($_POST['submitButton']) )
-{
-    // 1. Fetch form data
-    $firstName = $_POST['firstname'];
-    $lastName = $_POST['lastname'];
-    $email = $_POST['email'];
-    $phone = $_POST['phonenumber'];
-    $message = $_POST['message'];
-    // 2. Submit form data
-    $insertData = mysqli_query($conn, "INSERT INTO contactus(firstname,lastname,email,phonenumber,message)VALUES('$firstName', '$lastName', '$email', '$phone', '$message')");
-
-    if($insertData)
-    {
-        echo "Data submitted successfully";
-    }
-    else
-    {
-        echo "Error occurred";
-    }
-
-}
-
-?>
-
+<?php include('process.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +7,7 @@ if ( isset($_POST['submitButton']) )
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap-5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <title>Bootstrap Grid Layout</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -53,7 +23,7 @@ if ( isset($_POST['submitButton']) )
                 <div class="navbar-nav">
                     <a href="index.php" class="nav-link active">Home</a>
                     <a href="about-us.php" class="nav-link">About Us</a>
-                    <a href="#" class="nav-link">Contact Us</a>
+                    <a href="enroll.php" class="nav-link btn btn-primary text-white">Register Now</a>
                 </div>
             </div>
         </div>
@@ -93,6 +63,12 @@ if ( isset($_POST['submitButton']) )
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam eveniet voluptates iusto sed quia quam ab id consequatur aut corrupti. Et, placeat! Ratione ab et ipsa, voluptas harum a illo.</p>
             
             <form action="index.php" method="POST">
+                <?php
+                    if($response)
+                    {
+                        include ('response.php');
+                    };
+                ?>
                <div class="row">
                     <div class="mb-3 col-lg-6">
                         <label for="firstName" class="form-label">First Name</label>

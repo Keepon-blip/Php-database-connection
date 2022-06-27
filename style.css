@@ -7,3 +7,6 @@
     width: 90%;
 }
 
+main li {
+    list-style-type: none;
+}

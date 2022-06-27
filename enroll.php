@@ -1,4 +1,33 @@
-<?php include('process.php') ?>
+<?php
+$response='';
+$server="localhost";
+$username="root";
+$password="";
+$database="enrollment";
+
+$connection = mysqli_connect($server, $username, $password, $database);
+
+if ( isset($_POST['submitApplication']) )
+{
+    $fullName = ['fullname'];
+    $phone = ['phone'];
+    $email = ['email'];
+    $gender = ['gender'];
+    $course = ['course'];
+
+    $conveyData = mysqli_query($connection, "INSERT INTO enrollment(fullname,phone,email,gender,course)VALUES('$fullName', '$phone', '$email', '$gender', '$course')");
+
+    if($conveyData)
+    {
+        $response = "Data Submitted Successfully.";
+    }
+    else
+    {
+        $response = "Error Occurred";
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,28 +58,28 @@
     </nav>
       
     <div class="container-fluid">
-        <main class="bg-light p-5 text-center date">
-            <h1>JULY SOFTWARE ENGINEERING BOOTCAMP</h1>
-            <li>20th July 2022</li>
-            <li>Zalego Academy,<br>Devan Plaza</li>
+        <main class="bg-light p-5 text-center">
+            <h1><b>JULY SOFTWARE ENGINEERING BOOTCAMP</b></h1>
+            <i class="fa-solid fa-calendar-days"></i><li>20th July 2022</li>
+            <i class="fa-solid fa-location-dot"></i><li>Zalego Academy,<br>Devan Plaza</li>
         </main>
     </div>
-    <div class="container">
+    <div class="container shadow-sm p-5">
         <div class="row pt-5">
             <div class="text-center">
             <p>Looking for a place to kickstart your career in Technology? Whether you're a local, new in town or just cruising through we've got loads of great tips and events for you.</p>
             <h1>Sign up today?</h1>            
             </div>
-            <form method="POST">
-            
+            <form action="enroll.php" method="POST">
+              
                <div class="row">
                     <div class="mb-3 col-lg-6">
-                        <label for="fullName" class="form-label"><b>Full Name</b></label>
+                        <label for="fullName" class="form-label" na><b>Full Name</b></label>
                         <input type="text" name="fullname" class="form-control" placeholder="Enter Your Full Name">
                     </div>
                     <div class="mb-3 col-lg-6">
                         <label for="phone" class="form-label"><b>Phone Number</b></label>
-                        <input type="tel" name="lastname" class="form-control" placeholder="+2547...">
+                        <input type="tel" name="phone" class="form-control" placeholder="+2547...">
                     </div>
                </div> 
                <div class="row">
@@ -60,10 +89,10 @@
                     </div>
                     <div class="mb-3 col-lg-6">
                         <label for="gender" class="form-label"><b>What's your gender?</b></label>
-                        <select class="form-select mb-3" aria-label="">
+                        <select class="form-select mb-3" aria-label="" name="gender">
                             <option selected>--Select your gender--</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </div>
                 </div> 
@@ -75,12 +104,12 @@
                 </div>
                 <div class="row">
                     <label for="course" class="form-label"><b>What's your preferred course?</b></label>
-                    <select class="form-select mb-3">
+                    <select class="form-select mb-3" name="course">
                         <option selected>--Select your course--</option>
-                        <option value="">Web Design</option>
-                        <option value="">Data Science</option>
-                        <option value="">Android Development</option>
-                        <option value="">Cyber Security</option>
+                        <option value="webDesign">Web Design</option>
+                        <option value="dataScience">Data Science</option>
+                        <option value="androidDevelopment">Android Development</option>
+                        <option value="cyberSecurity">Cyber Security</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
@@ -109,16 +138,13 @@
                 </div>
             </div>
         </form>
-    </div>
-
-
-
-    <hr>
+    
+        <hr>
 
         <footer>
             &copy; Company 2022
         </footer>
-    
+    </div>
 
     <!-- <script src="bootstrap-5.2.0/js/bootstrap.bundle.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

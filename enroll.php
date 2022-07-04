@@ -1,33 +1,4 @@
-<?php
-$response='';
-$server="localhost";
-$username="root";
-$password="";
-$database="enrollment";
-
-$connection = mysqli_connect($server, $username, $password, $database);
-
-if ( isset($_POST['submitApplication']) )
-{
-    $fullName = ['fullname'];
-    $phone = ['phone'];
-    $email = ['email'];
-    $gender = ['gender'];
-    $course = ['course'];
-
-    $conveyData = mysqli_query($connection, "INSERT INTO enrollment(fullname,phone,email,gender,course)VALUES('$fullName', '$phone', '$email', '$gender', '$course')");
-
-    if($conveyData)
-    {
-        $response = "Data Submitted Successfully.";
-    }
-    else
-    {
-        $response = "Error Occurred";
-    }
-}
-
-?>
+<?php include('process2.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,27 +12,22 @@ if ( isset($_POST['submitApplication']) )
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light fixed-top shadow">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand">Zalego Academy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDisplayNavigations" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarDisplayNavigations">
-                <div class="navbar-nav">
-                    <a href="index.php" class="nav-link active">Home</a>
-                    <a href="about-us.php" class="nav-link">About Us</a>
-                    <a href="enroll.php" class="nav-link btn btn-primary text-white">Register Now</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include('navbar.php') ?>
       
     <div class="container-fluid">
-        <main class="bg-light p-5 text-center">
-            <h1><b>JULY SOFTWARE ENGINEERING BOOTCAMP</b></h1>
-            <i class="fa-solid fa-calendar-days"></i><li>20th July 2022</li>
-            <i class="fa-solid fa-location-dot"></i><li>Zalego Academy,<br>Devan Plaza</li>
+        <main class="bg-light p-5">
+            <div class="text-center">
+                <h1><b>JULY SOFTWARE ENGINEERING BOOTCAMP</b></h1>
+            </div>
+            <div class="container d-flex flex-row">
+                <i class="fa fa-calendar fa-2x"></i>
+                <li class="p-2">20th July 2022</li>
+            </div>
+            <div class="container ml-5 d-flex flex-row">
+                <i class="fa fa-map-marker fa-2x"></i>
+                <li class="p-2">Zalego Academy,<br>Devan Plaza</li>
+            </div>
+                        
         </main>
     </div>
     <div class="container shadow-sm p-5">
@@ -74,12 +40,12 @@ if ( isset($_POST['submitApplication']) )
               
                <div class="row">
                     <div class="mb-3 col-lg-6">
-                        <label for="fullName" class="form-label" na><b>Full Name</b></label>
+                        <label for="fullname" class="form-label" na><b>Full Name</b></label>
                         <input type="text" name="fullname" class="form-control" placeholder="Enter Your Full Name">
                     </div>
                     <div class="mb-3 col-lg-6">
-                        <label for="phone" class="form-label"><b>Phone Number</b></label>
-                        <input type="tel" name="phone" class="form-control" placeholder="+2547...">
+                        <label for="phonenumber" class="form-label"><b>Phone Number</b></label>
+                        <input type="tel" name="phonenumber" class="form-control" placeholder="+2547...">
                     </div>
                </div> 
                <div class="row">
@@ -91,8 +57,8 @@ if ( isset($_POST['submitApplication']) )
                         <label for="gender" class="form-label"><b>What's your gender?</b></label>
                         <select class="form-select mb-3" aria-label="" name="gender">
                             <option selected>--Select your gender--</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
                 </div> 
@@ -106,10 +72,10 @@ if ( isset($_POST['submitApplication']) )
                     <label for="course" class="form-label"><b>What's your preferred course?</b></label>
                     <select class="form-select mb-3" name="course">
                         <option selected>--Select your course--</option>
-                        <option value="webDesign">Web Design</option>
-                        <option value="dataScience">Data Science</option>
-                        <option value="androidDevelopment">Android Development</option>
-                        <option value="cyberSecurity">Cyber Security</option>
+                        <option value="Web Design">Web Design</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Android Development">Android Development</option>
+                        <option value="Cyber Security">Cyber Security</option>
                     </select>
                 </div>
                 <div class="col-lg-12">
